@@ -36,6 +36,7 @@ properties = dict(
         ],
     include_package_data = False,
     install_requires = [
+        'flask>=0.5',
         ],
     extras_require = {
         },
