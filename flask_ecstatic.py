@@ -12,10 +12,13 @@ __all__ = 'add'.split()
 __version__ = '0.1.1'
 
 import os
-from flask import send_from_directory
 
-def add(app, url = None, path = None, endpoint=None, index='index.html'):
+def add(app, url = None, path = None, endpoint=None, index='index.html', send_from_directory=None):
     """Adds static files endpoint with optional directory index."""
+
+    if not send_from_directory:
+        from flask import send_from_directory
+
     url = url or app.static_url_path or ''
     path = os.path.abspath(path or app.static_folder or '.')
     endpoint = endpoint or 'static_' + os.path.basename(path)
