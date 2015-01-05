@@ -61,6 +61,23 @@ if __name__ == '__main__':
 
 ## Changelog
 
-#### 0.1.0
+### 0.1.2
 
-* Initial release.
+#### Features
+
+- Add support for endpoint decoration, e.g. with auth.login_required
+- Return map of created endpoints
+
+
+### 0.1.1
+
+#### Bug Fixes
+
+- Fix setup without flask installed.
+
+
+### 0.1.0
+
+#### Features
+
+- Initial release.
