@@ -23,6 +23,7 @@ def add(app, url = None, path = None, endpoint=None, decorate=None, index='index
     path = os.path.abspath(path or app.static_folder or '.')
     endpoint = endpoint or 'static_' + os.path.basename(path)
     decorate = decorate or (lambda f: f)
+    endpoints = {}
 
     if path == app.static_folder:
         if url != app.static_url_path:
@@ -34,14 +35,22 @@ def add(app, url = None, path = None, endpoint=None, decorate=None, index='index
          def static_files(filename):
              return send_from_directory(path, filename)
 
+         endpoints[endpoint] = static_files
+
     if index:
          @app.route(url + '/', endpoint = endpoint + '_index')
          @decorate
          def static_index():
              return send_from_directory(path, index)
 
+         endpoints[endpoint + '_index'] = static_index
+
          if url:
              @app.route(url, endpoint = endpoint + '_index_bare')
              @decorate
              def static_index_bare():
                  return send_from_directory(path, index)
+
+             endpoints[endpoint + '_index_bare'] = static_index_bare
+
+    return endpoints
