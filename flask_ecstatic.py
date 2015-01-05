@@ -13,7 +13,7 @@ __version__ = '0.1.1'
 
 import os
 
-def add(app, url = None, path = None, endpoint=None, index='index.html', send_from_directory=None):
+def add(app, url = None, path = None, endpoint=None, decorate=None, index='index.html', send_from_directory=None):
     """Adds static files endpoint with optional directory index."""
 
     if not send_from_directory:
@@ -22,6 +22,7 @@ def add(app, url = None, path = None, endpoint=None, index='index.html', send_fr
     url = url or app.static_url_path or ''
     path = os.path.abspath(path or app.static_folder or '.')
     endpoint = endpoint or 'static_' + os.path.basename(path)
+    decorate = decorate or (lambda f: f)
 
     if path == app.static_folder:
         if url != app.static_url_path:
@@ -29,15 +30,18 @@ def add(app, url = None, path = None, endpoint=None, index='index.html', send_fr
                 ' Use different path for serving them at `{}` URL'.format(path, app.static_url_path, url))
     else:
          @app.route(url + '/<path:filename>', endpoint = endpoint)
+         @decorate
          def static_files(filename):
              return send_from_directory(path, filename)
 
     if index:
          @app.route(url + '/', endpoint = endpoint + '_index')
+         @decorate
          def static_index():
              return send_from_directory(path, index)
 
          if url:
              @app.route(url, endpoint = endpoint + '_index_bare')
+             @decorate
              def static_index_bare():
                  return send_from_directory(path, index)
