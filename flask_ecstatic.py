@@ -9,7 +9,7 @@ e.g. when serving static files on root URL ('') for any path unmatched with prev
 """
 
 __all__ = 'add'.split()
-__version__ = '0.1.2'
+__version__ = '0.2.0'
 
 import os
 

@@ -61,12 +61,19 @@ if __name__ == '__main__':
 
 ## Changelog
 
+### 0.2.0
+
+#### Bug Fixes
+
+- Fix serving index file from subdirectories.
+
+
 ### 0.1.2
 
 #### Features
 
-- Add support for endpoint decoration, e.g. with auth.login_required
-- Return map of created endpoints
+- Add support for endpoint decoration, e.g. with auth.login_required.
+- Return map of created endpoints.
 
 
 ### 0.1.1
