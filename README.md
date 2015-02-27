@@ -1,6 +1,6 @@
 # [Flask-Ecstatic](https://github.com/salsita/flask-ecstatic) <a href='https://github.com/salsita'><img align='right' title='Salsita' src='https://www.google.com/a/cpanel/salsitasoft.com/images/logo.gif?alpha=1' /></a>
 
-Serves static files with optional directory index
+Serves static files with optional directory index.
 
 [![Latest Version](https://pypip.in/version/Flask-Ecstatic/badge.svg)]
 (https://pypi.python.org/pypi/Flask-Ecstatic/)
@@ -61,12 +61,17 @@ if __name__ == '__main__':
 
 ## Changelog
 
+### 0.2.1
+
+#### Fixes
+
+- Fix package setup to not require dependencies preinstalled.
+
 ### 0.2.0
 
-#### Bug Fixes
+#### Fixes
 
 - Fix serving index file from subdirectories.
-
 
 ### 0.1.2
 
@@ -75,13 +80,11 @@ if __name__ == '__main__':
 - Add support for endpoint decoration, e.g. with auth.login_required.
 - Return map of created endpoints.
 
-
 ### 0.1.1
 
-#### Bug Fixes
+#### Fixes
 
 - Fix setup without flask installed.
-
 
 ### 0.1.0
 
