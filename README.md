@@ -61,6 +61,13 @@ if __name__ == '__main__':
 
 ## Changelog
 
+### 0.3.0
+
+#### Fixes
+
+- Return 404 for missing or inaccessible files.
+- Fix package setup on Python 3.
+
 ### 0.2.1
 
 #### Fixes
