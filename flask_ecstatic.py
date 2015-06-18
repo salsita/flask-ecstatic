@@ -8,16 +8,16 @@ unless you need additional static folders, or have multiple route handlers for t
 e.g. when serving static files on root URL ('') for any path unmatched with previous routes.
 """
 
-__all__ = 'add'.split()
+__all__ = 'add handle404'.split()
 __version__ = '0.2.1'
 
 import os
 
-def add(app, url = None, path = None, endpoint=None, decorate=None, index='index.html', flask=None, **options):
-    """Adds static files endpoint with optional directory index."""
+from flask import abort, safe_join, send_file, send_from_directory
+from functools import wraps
 
-    if not flask:
-        import flask
+def add(app, url = None, path = None, endpoint=None, decorate=None, index='index.html', **options):
+    """Adds static files endpoint with optional directory index."""
 
     url = url or app.static_url_path or ''
     path = os.path.abspath(path or app.static_folder or '.')
@@ -31,32 +31,45 @@ def add(app, url = None, path = None, endpoint=None, decorate=None, index='index
             .format(path, app.static_url_path, url))
 
     @app.route(url + '/<path:filename>', endpoint = endpoint)
+    @handle404
     @decorate
     def static_files(filename):
         if index:
-            filename = flask.safe_join(path, filename)
+            filename = safe_join(path, filename)
             if os.path.isdir(filename):
                 filename = os.path.join(filename, index)
-            return flask.send_file(filename, **options)
+            return send_file(filename, **options)
         else:
-            return flask.send_from_directory(path, filename, **options)
+            return send_from_directory(path, filename, **options)
 
     endpoints[endpoint] = static_files
 
     if index:
          @app.route(url + '/', endpoint = endpoint + '_index')
+         @handle404
          @decorate
          def static_index():
-             return flask.send_from_directory(path, index, **options)
+             return send_from_directory(path, index, **options)
 
          endpoints[endpoint + '_index'] = static_index
 
          if url:
              @app.route(url, endpoint = endpoint + '_index_bare')
+             @handle404
              @decorate
              def static_index_bare():
-                 return flask.send_from_directory(path, index, **options)
+                 return send_from_directory(path, index, **options)
 
              endpoints[endpoint + '_index_bare'] = static_index_bare
 
     return endpoints
+
+def handle404(view):
+    @wraps(view)
+    def decorated_view(**uri_params):
+        try:
+            return view(**uri_params)
+        except IOError:
+            abort(404)
+
+    return decorated_view
