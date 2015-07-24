@@ -2,9 +2,9 @@
 
 Serves static files with optional directory index.
 
-[![Version](https://badge.fury.io/gh/salsita%2Fflask-ecstatic.svg)]
+[![Version](https://img.shields.io/github/tag/salsita/flask-ecstatic.svg?label=version)]
 (https://github.com/salsita/flask-ecstatic/tags)
-[![PyPI package](https://badge.fury.io/py/Flask-Ecstatic.svg)]
+[![PyPI package](https://img.shields.io/pypi/v/Flask-Ecstatic.svg?label=pypi+package)]
 (https://pypi.python.org/pypi/Flask-Ecstatic/)
 [![Downloads](https://img.shields.io/pypi/dm/Flask-Ecstatic.svg)]
 (https://pypi.python.org/pypi/Flask-Ecstatic/)
