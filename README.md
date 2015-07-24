@@ -2,13 +2,15 @@
 
 Serves static files with optional directory index.
 
-[![Latest Version](https://pypip.in/version/Flask-Ecstatic/badge.svg)]
+[![Version](https://badge.fury.io/gh/salsita%2Fflask-ecstatic.svg)]
+(https://github.com/salsita/flask-ecstatic/tags)
+[![PyPI package](https://badge.fury.io/py/Flask-Ecstatic.svg)]
 (https://pypi.python.org/pypi/Flask-Ecstatic/)
-[![Downloads](https://pypip.in/download/Flask-Ecstatic/badge.svg)]
+[![Downloads](https://img.shields.io/pypi/dm/Flask-Ecstatic.svg)]
 (https://pypi.python.org/pypi/Flask-Ecstatic/)
-[![Supported Python versions](https://pypip.in/py_versions/Flask-Ecstatic/badge.svg)]
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/Flask-Ecstatic.svg)]
 (https://pypi.python.org/pypi/Flask-Ecstatic/)
-[![License](https://pypip.in/license/Flask-Ecstatic/badge.svg)]
+[![License](https://img.shields.io/pypi/l/Flask-Ecstatic.svg)]
 (https://pypi.python.org/pypi/Flask-Ecstatic/)
 
 Files in static folder are automatically served on static URL by Flask.
